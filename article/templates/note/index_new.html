@@ -1,0 +1,100 @@
+{% extends "base_new.html" %}
+{% block title %}
+   {% if is_home %}
+     Jiafa Blog|假发的、、
+   {% endif%}
+   {% if is_arch_month %}
+     {{month}}月 |{{year}}年
+   {% endif%}
+   {% if  is_classfi  %}
+     {{classfi}}
+   {% endif%}
+   {% if  is_tag  %}
+     {{tag}}
+   {% endif%}
+{% endblock %}
+{% block content %}
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/static/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jia Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">回答我，星星永远是星星吗？</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<div class="container">
+  <div class="row">
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+        <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+
+
+{% if error %}
+<h2>没有相关文章题目</h2>
+{% else %}
+{% for article in articles %}
+<div class="post-preview">
+    <a href="{{ article.get_absolute_url }}">
+        <h2 class="post-title">
+            {{article.title}}
+        </h2>
+        
+        <h3 class="post-subtitle">
+            {{ article.subtitle }}
+        </h3>
+        
+        <div class="post-content-preview">
+            {{ article.content|truncatewords_html:40|safe}}
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Jiafa on {{article.publish_time.year}}Year{{article.publish_time.month}}Mon{{article.publish_time.day}}Day 
+        {% for i in article.get_tags %}{{i}}  {% endfor %}
+    </p>
+</div>
+<hr>
+{% endfor %}
+{% endif %}
+
+<!-- Pager -->
+
+{% if articles|length > 1 %}
+<ul class="pager">
+    {% if articles.has_previous %}
+    <li class="previous">
+        <a href="?page={{ articles.previous_page_number }}">&larr; Newer Posts</a>
+    </li>
+    {% endif %}
+    {% if articles.has_next %}
+    <li class="next">
+        <a href="?page={{ articles.next_page_number }}">Older Posts &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+</div>
+<!--SideBar-->
+{% block side %}
+    {% include "note/_sidebar_new.html" %}
+{% endblock %}
+
+
+</div>
+</div>
+{% endblock %}

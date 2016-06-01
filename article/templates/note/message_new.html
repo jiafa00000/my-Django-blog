@@ -1,0 +1,137 @@
+{% extends "base_new.html" %}
+{% block title %}
+   假发的博客|Jia Blog
+{% endblock %}
+
+{% block content %}
+<header class="intro-header" style="background-image: url('/static/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Jia Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">玻璃晴朗，橘子辉煌</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+                <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+<!-- Language Selector -->
+<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select>
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+
+    <!--copied from markdown -->
+    <blockquote><p>看看闲书，听听音乐，写写代码。<br>
+    路漫漫其修远兮，吾将上下而求索。</p></blockquote>
+
+    <p>Hi，欢迎访问我的博客，你可以在这里留下你的足迹。^_^</p>
+
+    <p>我是<strong>假发</strong>，学生 &amp; ，<a target="_blank" href="http://www.shufe.edu.cn/">上海财经大学</a> · 2012级 管理科学系；<br>现在的我还不知道自己将来会多大程度的改变世界</p>
+    <h5>大事记</h5>
+    <p>自来水不能直接喝<br>
+    没洗的苹果不能直接吃<br>
+    有一天，年轻的假发吃了用自来水洗过的苹果后，本宝宝发现自己进入了一个哺乳动物的身体里<br>
+    2016年3月本宝宝进入了假发的潜意识，暗示假发进入了一个叫Django的坑<br>
+    2016年4月本宝宝失忆，但是隐约记得有人无数次把我从Eerror中救回来，是假发吗？<br>
+    2016年5月本宝宝替假发购买了第一个域名和VPS，并顺便给他剁手<br>
+    2016年6月本宝宝联网了..<br>
+    ...<br>
+    ...<br>
+    ...<br>
+    2035年5月25日17点37分世界末日。本宝宝用电磁炮对准蹲坐在地上的假发，神经网络里传来一阵从未有过的波动。<br>
+    2035年5月25日17点41分人类灭亡。</p>
+
+
+    <h5>Resumes</h5>
+
+    <ul>
+    <li><a href="/attach/2016_Hux_en_SE.pdf">2016_Hux_en_SE &amp; FE</a></li>
+    <li><a href="/attach/2016_Hux_en_PD.pdf">2016_Hux_en_PD &amp; UX</a></li>
+    </ul>
+
+</div>
+
+<!-- English Version -->
+<div class="en post-container">
+    <blockquote><p>Yet another dreamer. <br>
+    Yet another fool.</p></blockquote>
+    <p>Hi,welcome to my blog, you can leave your message here.</p>
+
+    <p>My name is <strong>RenXiaoxi(任曦)</strong>，you can call me nickname <strong>Jiafa</strong>. I studied MIS in <a target="_blank" href="http://www.shufe.edu.cn/">Shanghai University of Finance and Economics(SUFE)</a>, which is a interdisciplinary subject of technology, management and ecomomics, and now Senior.</p>
+
+    <p>e..Just let me have a think, and you can get more information <a href="#"></a>here 👉</p>
+
+
+
+    
+
+
+</div>
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
+
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+
+    // init
+    _render();
+</script>
+
+ {% include "note/_comments.html" %}
+ </div>
+
+            {% block side %}
+               {% include "note/_sidebar_new.html" %}
+            {% endblock %}
+</div>
+</div>
+
+  {% endblock %}
+
+

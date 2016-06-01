@@ -1,0 +1,56 @@
+{% extends "base_new.html" %}
+{% block title %}
+  
+     Archive|Jia Blog
+  
+{% endblock %}
+{% block content %}
+<header class="intro-header" style="background-image: url('/static/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Archive</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">一生想做浪漫极客</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+  <div class="row">
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+        <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+            <section>
+            {% if archive %}
+            {% for key,value in archive.items %}
+             <hr class="hidden-sm hidden-xs">     
+
+                      <h3>{{key.year}}年{{key.month}}月 </h3>
+                      
+                      <div class="subheading">	            
+                    {% for i in value reversed %} 
+                         <a href="{{i.get_absolute_url}}"> <span style="position:absolute;">{{i.publish_time.month}}月{{i.publish_time.day}}日&nbsp; &nbsp;</span>  <span class="liaspan" style="position:absolute; left:130px;">{{i}}</span> </a><br>
+                    {% endfor %}
+                     </div>
+
+            {% endfor %}
+            {% endif %}
+            </section>
+        </div>
+        {% block side %}
+         {% include "note/_sidebar_new.html" %}
+        {% endblock %}
+
+    </div>
+    </div>
+    {% endblock %}

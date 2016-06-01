@@ -1,0 +1,127 @@
+{% extends "base_new.html" %}
+{% block title %}
+   {{article.title}}
+{% endblock %}
+
+{% block content %}
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/static/img/post-bg-re-vs-ng2.jpg')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        {% for i in article.get_tags %}
+                        <a class="tag" href="{{ i.get_absolute_url }}" title="{{ tag }}" rel="tag">{{ i }}</a>
+                        {% endfor %}
+                        
+                    </div>
+                    <h1>{{article.title}}</h1>
+
+
+                    
+                    <h2 class="subheading">{{article.subtitle}}</h2>
+                    
+                    <span class="meta">Posted by Jiafa on {{article.publish_time.year}}，{{article.publish_time.month}}，{{article.publish_time.day}}</span>
+                    <br>
+                    <br>
+                    <!--这里怎么显示英文的月份？需要在model里做么？-->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container">
+
+				{{ article.content|safe }}
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="{{article.id}}"
+                    data-title="{{article.title}}"
+                    
+                    data-images="/static/img/post-bg-re-vs-ng2.jpg"
+                     >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                <!-- Pager -->
+                <ul class="pager">
+                    {% if article.get_before_article %}
+                    {% with before=article.get_before_article %}
+                    <li class="previous">
+                        <a href="{{ before.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{{before.title}}">
+                        Previous<br>
+                        <span>{{before.title}}</span>
+                        </a>
+                    </li>
+                    {% endwith %}
+                    {% endif %}
+                    {% if article.get_after_article %}
+                    {% with after=article.get_after_article %}
+                    <li class="next">
+                        <a href="{{ after.get_absolute_url }}" data-toggle="tooltip" data-placement="top" title="{{after.title}}">
+                        Next<br>
+                        <span>{{after.title}}</span>
+                        </a>
+                    </li>
+                    {% endwith %}
+                    {% endif %}
+                </ul>
+
+                {% include "note/_comments.html" %}
+            </div>
+            
+            {% block side %}
+               {% include "note/_sidebar_new.html" %}
+            {% endblock %}
+
+        </div>
+    </div>
+</article>
+
+             {% endblock %}

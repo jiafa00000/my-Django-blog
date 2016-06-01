@@ -1,0 +1,156 @@
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+            
+                <!-- Featured Tags -->  
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="#">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                      {% if taglist %}
+                      {% for x,y in taglist %}
+                      <a href="/articleTag/{{x}}/">{{x}}</a>
+                     
+                      <!--上一行已修改-->
+                       {% endfor %}
+                     {% endif %}  
+                                           
+                    </div>
+                </section>
+
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="#">CLASSIFICATIONS</a></h5>
+                    <div class="tags">
+                     {% if classification %}
+                      {% for x,y in classification %}
+                     <a href="{% url 'classfiDetail' classfi=x %}">{{x}}({{y}})</a>
+                      <!--上一行已修改-->
+                       {% endfor %}
+                     {% endif %}                       
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <img src="/static/img/lumingfei.jpg" />
+                        
+                        
+                            <p>与世界分享一点人生的经验</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            <li>
+                                <a href="feed.xml">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a href="https://twitter.com/{{ site.twitter_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="http://weibo.com/{{ site.weibo_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                         
+                           
+                            <li>
+                                <a target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                         
+                         
+                            <li>
+                                <a target="_blank" href="https://github.com/{{ site.github_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                       
+                          
+                            <li>
+                                <a target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                          
+                        </ul>
+                    </div>
+                </section>
+                <!--Archive-->
+                 <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="#">ARCHIVE</a></h5>
+                    <div class="tags">
+                    {% if date_list %}
+                    {% for x,y in date_list %}
+                    <a href="{% url 'archive_month' year=x.year month=x.month %}">{{x.year}}年{{x.month}}月({{y}})</a>
+    <!--上一行已修改-->
+                    {% endfor %}
+                    {% endif %}                     
+                    </div>
+                </section>
+     <!-- Friends Blog -->
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                      <!--   <li><a href="{{friend.href}}">{{friend.title}}</a></li> -->
+                    <li><a target="_blank" href="https://github.com/Andrew-liu">Andrew Liu|GitHub</a></li>
+                    <li><a target="_blank" href="https://xjoker.us/">xJoker|时光置屋</a></li>
+                    <li><a target="_blank" href="http://html5up.net/aerial">Aerial | HTML5 UP</a></li>
+                    <li><a target="_blank" href="http://reverland.org/">Reverland|知行阁</a></li>
+                    
+                    <li><a target="_blank" href="http://xlzd.me/">海盗xlzd|python触</a></li>
+                    <li><a target="_blank" href="http://dhong.co/">DuanHong|DHong</a></li>
+                    <li><a target="_blank" href="http://blog.kochiya.me/">Sanaeの空想庭园|又一个python触</a></li>
+                </ul>
+                
+    		</div>
+
+
